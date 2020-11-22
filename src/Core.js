@@ -1,10 +1,11 @@
 const createDatabaseConnection = require('./Database');
 const createWebserver = require('./Webserver');
 
-function createCore(){
+function createCore(configurations = {}){
+
     console.log('createCore')
-    const database = createDatabaseConnection();
-    const webserver = createWebserver();
+    const database = configurations.database || createDatabaseConnection();
+    const webserver = configurations.webserver || createWebserver();
 
     function start(){
         console.log('> [core] Starting...');
